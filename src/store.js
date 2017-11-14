@@ -18,7 +18,8 @@ const result = [
   }
 ];
 const initialState = {
-  planet: result
+  planet: []
+
 };
 
 const store = createStore(initialState);
