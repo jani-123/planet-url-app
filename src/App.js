@@ -1,21 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from "react";
+import logo from "./logo.svg";
 import { connect } from "redux-zero/react";
-import { search } from "./actions";
-import './App.css';
+//import { buscar } from "./actions";
+import "./App.css";
 
-const App = () =>{
+const App = ({planet}) => {
   return (
     <div className="interactions">
-       <form className="form-inline" onSubmit={ (e) => {
+      <div>
+        <div>
+          {
+            planet.map((value,index) =>{
+                return <div>
+                    <ul key={index}>
+                      <li>
+                        <img src="https://www.bwf.com/wp-content/uploads/2013/11/earth2.png" />
+                        <p>{value.pl_name}</p>
+                        <p>{value.pl_disk}</p>
+                        <p>{value.pl_dens}</p>
+                      </li>
+                    </ul>
+                  </div>;
+            })
+          }
+        </div>
+      </div>
+      <form
+        className="form-inline"
+        onSubmit={e => {
           e.preventDefault();
-          search();
-       }}>
-          <button type="submit" className="btn btn-default">Search</button>
-       </form>
-    </div>);
-}
+          
+        }}
+      >
+        <button type="submit" className="btn btn-default">
+          Search
+        </button>
+      </form>
+      
+    </div>
+  );
+};
 
-const mapToProps = ({app}) => ({app});
+const mapToProps = ({ planet }) => ({ planet });
 
 export default connect(mapToProps)(App);
